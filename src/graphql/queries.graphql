@@ -1,0 +1,10 @@
+query user {
+  user {
+    name
+    email
+    mobile
+    gender
+    country
+    city
+  }
+}

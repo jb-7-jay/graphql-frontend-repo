@@ -1,0 +1,9 @@
+overwrite: true
+schema: "http://localhost:3001/graphql"
+generates:
+  src/generated/graphql.tsx:
+  documents: "src/**/*.graphql"
+  plugins: typescript
+  preset: 'flow'
+  config:
+    withHooks: true
