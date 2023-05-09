@@ -1,9 +1,11 @@
 overwrite: true
 schema: "http://localhost:3001/graphql"
+documents: "src/**/*.graphql"
 generates:
   src/generated/graphql.tsx:
-  documents: "src/**/*.graphql"
-  plugins: typescript
-  preset: 'flow'
-  config:
-    withHooks: true
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+    config:
+      withHooks: true
