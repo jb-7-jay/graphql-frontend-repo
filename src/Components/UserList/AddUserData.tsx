@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Form, Input, Modal } from "antd";
 import { UserType } from ".";
+import { useAddUserMutation } from "../../generated/graphql";
 
 const UserFormModal = ({
   userColumnData,
@@ -13,6 +14,10 @@ const UserFormModal = ({
   visible: boolean;
   setVisible: (type: boolean) => void;
 }) => {
+
+
+   const [addUserMutation, { data, loading, error }] = useAddUserMutation();
+   
   const [form] = Form.useForm();
 
   const showModal = () => {
@@ -28,9 +33,22 @@ const UserFormModal = ({
     form.resetFields();
   };
 
-  const onFinish = (values: UserType) => {
-      setUserColumnData([...userColumnData, values]);
+  const onFinish = async (values: UserType) => {
+    console.log('values', values)
+
+    const {data}=  await addUserMutation({
+      variables: {
+        name: values.name,
+        email: values.email,
+        gender: values.gender,
+      },
+    })
+
+    console.log('data', data)
+
+    if (data) {
       handleCancel();
+    }
   };
 
   const formFields = [
@@ -45,24 +63,9 @@ const UserFormModal = ({
       rules: [{ required: true, message: 'Please enter a email' }]
     },
     {
-      name: "Mobile",
-      label: "mobile",
-      rules: [{ required: true, message: 'Please enter a mobile' }]
-    },
-    {
-      name: "Gender",
+      name: "gender",
       label: "gender",
       rules: [{ required: true, message: 'Please enter a gender' }]
-    },
-    {
-      name: "Country",
-      label: "country",
-      rules: [{ required: true, message: 'Please enter a country' }]
-    },
-    {
-      name: "City",
-      label: "city",
-      rules: [{ required: true, message: 'Please enter a city' }]
     },
   ];
 
