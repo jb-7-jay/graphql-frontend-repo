@@ -15,55 +15,122 @@ export type Scalars = {
   Float: number;
 };
 
+/** Add new user */
 export type Mutation = {
   __typename?: 'Mutation';
-  createUser?: Maybe<User>;
+  addProject?: Maybe<Project>;
+  addUser?: Maybe<User>;
+  deleteProject?: Maybe<Project>;
+  deleteUser?: Maybe<User>;
+  updateProject?: Maybe<Project>;
 };
 
 
-export type MutationCreateUserArgs = {
-  city?: InputMaybe<Scalars['String']>;
-  country?: InputMaybe<Scalars['String']>;
-  email?: InputMaybe<Scalars['String']>;
-  gender?: InputMaybe<Scalars['String']>;
-  mobile?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
+/** Add new user */
+export type MutationAddProjectArgs = {
+  description: Scalars['String'];
+  status?: InputMaybe<ProjectStatus>;
+  title: Scalars['String'];
+  user: Scalars['ID'];
 };
 
-/** Root Query */
+
+/** Add new user */
+export type MutationAddUserArgs = {
+  email: Scalars['String'];
+  gender: Scalars['String'];
+  name: Scalars['String'];
+};
+
+
+/** Add new user */
+export type MutationDeleteProjectArgs = {
+  id: Scalars['ID'];
+};
+
+
+/** Add new user */
+export type MutationDeleteUserArgs = {
+  id: Scalars['ID'];
+};
+
+
+/** Add new user */
+export type MutationUpdateProjectArgs = {
+  description: Scalars['String'];
+  id: Scalars['ID'];
+  status?: InputMaybe<ProjectStatusUpdate>;
+  title: Scalars['String'];
+};
+
+export enum ProjectStatus {
+  Completed = 'completed',
+  InProgress = 'inProgress',
+  New = 'new'
+}
+
+export enum ProjectStatusUpdate {
+  Completed = 'completed',
+  InProgress = 'inProgress',
+  New = 'new'
+}
+
+/** root query */
 export type RootQueryType = {
   __typename?: 'RootQueryType';
+  /** Get project details by Id */
+  project?: Maybe<Project>;
+  /** List of all projects */
+  projects?: Maybe<Array<Maybe<Project>>>;
+  /** Get user details */
+  user?: Maybe<User>;
   /** List of all Users */
-  user?: Maybe<Array<Maybe<User>>>;
+  users?: Maybe<Array<Maybe<User>>>;
+};
+
+
+/** root query */
+export type RootQueryTypeProjectArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+/** root query */
+export type RootQueryTypeUserArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+/** This is project type data */
+export type Project = {
+  __typename?: 'project';
+  _id?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  status?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  user?: Maybe<User>;
 };
 
 /** This is user type data */
 export type User = {
   __typename?: 'user';
   _id?: Maybe<Scalars['String']>;
-  city?: Maybe<Scalars['String']>;
-  country?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   gender?: Maybe<Scalars['String']>;
-  mobile?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
 };
 
 export type UserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type UserQuery = { __typename?: 'RootQueryType', user?: Array<{ __typename?: 'user', name?: string | null, email?: string | null, mobile?: string | null, gender?: string | null, country?: string | null, city?: string | null } | null> | null };
+export type UserQuery = { __typename?: 'RootQueryType', users?: Array<{ __typename?: 'user', name?: string | null, email?: string | null, gender?: string | null } | null> | null };
 
 
 export const UserDocument = gql`
     query user {
-  user {
+  users {
     name
     email
-    mobile
     gender
-    country
-    city
   }
 }
     `;

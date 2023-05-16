@@ -1,10 +1,7 @@
 query user {
-  user {
+  users {
     name
     email
-    mobile
     gender
-    country
-    city
   }
 }
