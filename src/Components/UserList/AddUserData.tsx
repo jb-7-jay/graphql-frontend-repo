@@ -44,8 +44,6 @@ const UserFormModal = ({
       },
     })
 
-    console.log('data', data)
-
     if (data) {
       handleCancel();
     }

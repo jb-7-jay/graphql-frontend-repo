@@ -122,7 +122,7 @@ export type User = {
 export type UserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type UserQuery = { __typename?: 'RootQueryType', users?: Array<{ __typename?: 'user', name?: string | null, email?: string | null, gender?: string | null } | null> | null };
+export type UserQuery = { __typename?: 'RootQueryType', users?: Array<{ __typename?: 'user', name?: string | null, email?: string | null } | null> | null };
 
 export type AddUserMutationVariables = Exact<{
   name: Scalars['String'];
@@ -139,7 +139,6 @@ export const UserDocument = gql`
   users {
     name
     email
-    gender
   }
 }
     `;
