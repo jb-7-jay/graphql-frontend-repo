@@ -1,0 +1,17 @@
+mutation AddUser($name: String!, $email: String!, $gender: String!) {
+  addUser(name: $name, email: $email, gender: $gender) {
+    _id
+    name
+    email
+    gender
+  }
+}
+
+mutation DeleteUser($id: ID!) {
+  deleteUser(id: $id) {
+    _id
+    name
+    email
+    gender
+  }
+}

@@ -1,0 +1,17 @@
+query GetUsers {
+  users {
+    _id
+    name
+    email
+    gender
+  }
+}
+
+query GetUser($id: ID!) {
+  user(id: $id) {
+    _id
+    name
+    email
+    gender
+  }
+}

@@ -1,0 +1,61 @@
+mutation AddProject(
+  $title: String!
+  $description: String!
+  $status: ProjectStatus = new
+  $user: ID!
+) {
+  addProject(
+    title: $title
+    description: $description
+    status: $status
+    user: $user
+  ) {
+    _id
+    title
+    description
+    status
+    user {
+      _id
+      name
+      email
+    }
+  }
+}
+
+mutation UpdateProject(
+  $id: ID!
+  $title: String!
+  $description: String!
+  $status: ProjectStatusUpdate = new
+) {
+  updateProject(
+    id: $id
+    title: $title
+    description: $description
+    status: $status
+  ) {
+    _id
+    title
+    description
+    status
+    user {
+      _id
+      name
+      email
+    }
+  }
+}
+
+mutation DeleteProject($id: ID!) {
+  deleteProject(id: $id) {
+    _id
+    title
+    description
+    status
+    user {
+      _id
+      name
+      email
+    }
+  }
+}
