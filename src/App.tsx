@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { Layout } from './Components/layout/Layout'
 import { UserList } from './features/users/UserList'
+import { ProjectList } from './features/projects/ProjectList'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,7 +22,7 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<UserList />} />
-            {/* <Route path="/projects" element={<ProjectList />} /> */}
+            <Route path="/projects" element={<ProjectList />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </Layout>
