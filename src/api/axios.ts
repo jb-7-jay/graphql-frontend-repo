@@ -10,18 +10,20 @@ export const axiosInstance = axios.create({
 export const gqlFetcher = <TData, TVariables>(
   doc: string,
   variables?: TVariables
-): any => {
-  return axiosInstance
-    .post('', {
+): (() => Promise<TData>) => {
+  return async () => {
+    const response = await axiosInstance.post('', {
       query: doc,
       variables,
     })
-    .then((response) => {
-      const { data } = response
-      if (data.errors) {
-        const { message } = data.errors[0] || 'Unknown GraphQL error'
-        throw new Error(message)
-      }
-      return data.data
-    })
+
+    const { data } = response
+
+    if (data.errors) {
+      const { message } = data.errors[0] || 'Unknown GraphQL error'
+      throw new Error(message)
+    }
+
+    return data.data
+  }
 }

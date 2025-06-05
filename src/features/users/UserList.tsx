@@ -13,7 +13,6 @@ export const UserList = () => {
   const { data, isLoading } = useGetUsersQuery()
   const addUser = useAddUserMutation()
   const deleteUser = useDeleteUserMutation()
-  console.log('data', data)
 
   const columns = [
     {
@@ -93,8 +92,7 @@ export const UserList = () => {
       <Table
         loading={isLoading}
         columns={columns}
-        dataSource={[]}
-        // dataSource={data?.users || []}
+        dataSource={(data?.users as any) || []}
         rowKey="_id"
       />
 
