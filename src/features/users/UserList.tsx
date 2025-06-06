@@ -94,6 +94,8 @@ export const UserList = () => {
         columns={columns}
         dataSource={(data?.users as any) || []}
         rowKey="_id"
+        pagination={{ pageSize: 7, total: data?.users?.length || 0 }}
+        scroll={{ x: 'max-content' }}
       />
 
       <UserFormModal

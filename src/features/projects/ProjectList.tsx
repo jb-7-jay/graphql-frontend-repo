@@ -111,6 +111,7 @@ export const ProjectList = () => {
         columns={columns}
         dataSource={data?.projects as Project[]}
         rowKey="_id"
+        pagination={{ pageSize: 7, total: data?.projects?.length || 0 }}
       />
 
       <ProjectDetailsModal
