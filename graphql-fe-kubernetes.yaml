@@ -14,7 +14,7 @@ spec:
         app: graphql-frontend-repo
     spec:
       containers:
-        - name: graphql-frontend-repo-container
+        - name: graphql-frontend-repo-container-1
           image: jaybhingradiya7/graphql-frontend-repo:latest
           imagePullPolicy: Always
           ports:
